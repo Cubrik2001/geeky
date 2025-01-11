@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Perfil</title>
+  <style>
+    .main {
+      padding: 20px 10px; /* Añadido un poco de padding */
+    }
+
+    @media screen and (max-width: 450px) {
+      .login-form {
+        margin-top: 10%;
+      }
+      .register-form {
+        margin-top: 10%;
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      .main {
+        margin-left: 30%;
+      }
+
+      .sidenav {
+        width: 40%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    .btn-spacing {
+      margin-top: 10px; /* Espacio entre los botones */
+    }
+  </style>
+</head>
+<body>
+<section layout:fragment="body">
+  <div class="main">
+    <div class="col-md-6 col-sm-12">
+      <div class="login-form">
+        <form th:action="@{/perfil/update}" method="post" th:object="${usuario}">
+          <input type="hidden" th:field="*{id}" />
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="correo" th:field="*{correo}" required>
+          </div>
+          <div class="mb-3">
+            <label for="photoUrl" class="form-label">URL de Foto</label>
+            <input type="text" class="form-control" id="photoUrl" th:field="*{photoUrl}">
+          </div>
+          <div class="mb-3">
+            <label for="contrasena" class="form-label">Nueva Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" th:field="*{contrasena}">
+          </div>
+          <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

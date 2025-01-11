@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Registrarse</title>
+    <style>
+        .main {
+            padding: 20px 10px; /* Añadido un poco de padding */
+        }
+
+        @media screen and (max-width: 450px) {
+            .login-form {
+                margin-top: 10%;
+            }
+            .register-form {
+                margin-top: 10%;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .main {
+                margin-left: 30%;
+            }
+
+            .sidenav {
+                width: 40%;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .btn-spacing {
+            margin-top: 10px; /* Espacio entre los botones */
+        }
+    </style>
+</head>
+<body>
+<section layout:fragment="body">
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div th:if="${param.fail}" class="alert alert-danger">
+                El nombre o correo de usuario ya existe
+            </div>
+            <div class="login-form">
+                <form method="post" role="form" th:action="@{/registrar/save}" th:object="${usuario}">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Nombre de Usuario"
+                                th:field="*{nombre}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('nombre')}" class="text-danger"></p>
+                    <div class="form-group">
+                        <label>Fotor de Perfil</label>
+                        <input
+                                type="url"
+                                class="form-control"
+                                placeholder="url de la foto de perfil"
+                                th:field="*{photoUrl}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger"></p>
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Apellido de Usuario"
+                                th:field="*{apellido}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('apellido')}" class="text-danger"></p>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input
+                                type="email"
+                                class="form-control"
+                                placeholder="Email"
+                                th:field="*{correo}">
+                    </div>
+                    <div th:if="${#fields.hasErrors('correo')}" class="alert alert-danger">
+                        <p th:each="err : ${#fields.errors('correo')}" th:text="${err}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input
+                                type="password"
+                                class="form-control"
+                                placeholder="Contraseña"
+                                th:field="*{contrasena}">
+                    </div>
+                    <p th:if="${#fields.hasErrors('contrasena')}" class="text-danger"></p>
+                    <button type="submit" class="btn btn-secondary btn-spacing">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

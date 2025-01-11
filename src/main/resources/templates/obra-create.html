@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Crear Obra</title>
+</head>
+<body>
+<!-- Section-->
+  <section layout:fragment="body" class="py-5">
+    <div class="container">
+      <form role="form" method="post" th:action="@{/obras/new}" th:object="${obra}">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="titulo">Titulo de la Obra</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="titulo"
+                    name="titulo"
+                    th:field="*{titulo}"
+                    placeholder="Titulo">
+            <p th:if="${#fields.hasErrors('titulo')}" class="text-danger" th:errors="*{titulo}"></p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linksDescargas">Url 1 de descarga</label>
+          <input
+                  type="url"
+                  class="form-control"
+                  id="linksDescargas"
+                  name="linksDescargas[0]"
+                  th:field="*{linksDescargas[0]}"
+                  placeholder="link Descarga 1">
+          <p th:if="${#fields.hasErrors('linksDescargas')}" class="text-danger" th:errors="*{linksDescargas}"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="linksDescargas2">Url 2 de descarga</label>
+          <input
+                  type="url"
+                  class="form-control"
+                  id="linksDescargas2"
+                  name="linksDescargas[1]"
+                  th:field="*{linksDescargas[1]}"
+                  placeholder="Link Descarga 2">
+          <p th:if="${#fields.hasErrors('linksDescargas')}" class="text-danger" th:errors="*{linksDescargas}"></p>
+        </div>
+
+        <div>
+          <label for="portadaUrl">Url de la portada</label>
+          <input
+                  type="url"
+                  class="form-control"
+                  id="portadaUrl"
+                  name="portadaUrl"
+                  th:field="*{portadaUrl}"
+                  placeholder="Link Url de la Portada">
+          <p th:if="${#fields.hasErrors('portadaUrl')}" class="text-danger" th:errors="*{portadaUrl}"></p>
+        </div>
+
+          <div class="form-group">
+            <label for="sinopsis">Sinopsis</label>
+            <textarea
+                    class="form-control"
+                    rows="3"
+                    id="sinopsis"
+                    name="sinopsis"
+                    th:field="*{sinopsis}"
+                    placeholder="Sinopsis">
+            </textarea>
+            <p th:if="${#fields.hasErrors('sinopsis')}" class="text-danger" th:errors="*{sinopsis}"></p>
+          </div>
+
+        <div class="form-group col-md-2">
+          <div class="form-group">
+            <label for="formato">Formato</label>
+            <select
+                    class="form-control"
+                    id="formato"
+                    name="formato"
+                    th:field="*{formato}">
+              <option value="CBR">CBR</option>
+              <option value="PDF">PDF</option>
+              <option value="EPUB">EPUB</option>
+            </select>
+          </div>
+        </div>
+
+          <div class="form-group col-md-2">
+            <div class="form-group">
+              <label for="idioma">Idioma</label>
+              <select
+                      class="form-control"
+                      id="idioma"
+                      name="idioma"
+                      th:field="*{idioma}">
+                <option value="Español">Español</option>
+                <option value="Ingles">Ingles</option>
+              </select>
+            </div>
+          </div>
+
+        <div class="form-group col-md-2">
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select
+                    class="form-control"
+                    id="estado"
+                    name="estado"
+                    th:field="*{estado}">
+              <option value="Finalizado">Finalizado</option>
+              <option value="En emisión">En emisión</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" class="btn btn-primary">Publicar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

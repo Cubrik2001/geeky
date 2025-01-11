@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${obra.titulo}"></title>
+</head>
+<body>
+<!-- Section-->
+<section layout:fragment="body">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-3">
+                <div class="col-lg-3">
+                    <div class="d-flex align-items-center mt-lg-5 mb-4">
+                        <div class="ms-3">
+                            <div class="d-flex align-items-center mt-lg-5 mb-4">
+                                <img class="img-fluid rounded-circle" th:src="${obra.usuario.photoUrl}" alt="...">
+                                <div class="ms-3">
+                                    <div class="fw-bold" th:text="${obra.usuario.nombre}"></div>
+                                    <div class="text-muted">Usuario Registrado</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <!--Contenido de la Obra-->
+                <article>
+                    <!-- Obra header-->
+                    <header class="mb-4">
+                        <!-- Titulo de la Obra-->
+                        <h1 class="fw-bolder mb-1" th:text="${obra.titulo}"></h1>
+                        <!--Fecha de creacion-->
+                        <div class="text-muted fst-italic mb-2" th:text="'actualizado el ' + ${formattedUpdatedOn}"></div>
+                    </header>
+                    <!-- Portada-->
+                    <figure class="mb-4"><img class="img-fluid rounded"  th:src="${obra.getPortadaUrl()}" style="width: 683px; height: 1024px; object-fit: cover;" alt="Portada de ${obra.getTitulo()}"/></figure>
+                    <!-- Sinopsis-->
+                    <section class="mb-5">
+                        <h2 class="text-center fw-bolder mb-4 mt-5 "> Sinopsis</h2>
+                        <p class="fs-5 mb-4" th:text="${obra.sinopsis}"></p>
+                    </section>
+
+                    <!--Enlaces ?-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a th:if="${obra.linksDescargas.size() > 0}" th:href="${obra.linksDescargas[0]}" class="btn btn-outline-dark btn-lg">Descargar 1</a>
+                            <a th:if="${obra.linksDescargas.size() > 1}" th:href="${obra.linksDescargas[1]}" class="btn btn-outline-dark btn-lg">Descargar 2</a>
+                        </div>
+                    </div>
+                    <!--Botones admin-->
+                    <div class="d-flex justify-content-center">
+
+                        <div th:if="${usuario.id} == ${obra.usuario.id}">
+                            <a class="btn btn-danger text-white btn-lg" th:href="@{/obras/{obraId}/delete(obraId=${obra.getId()})}" role="button" style="margin: 10px">Eliminar Obra</a>
+                            <!--Boton de Editar-->
+                            <a class="btn btn-info text-white btn-lg" th:href="@{/obras/{obraId}/edit(obraId=${obra.id})}" role="button" style="margin: 10px">Editar</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

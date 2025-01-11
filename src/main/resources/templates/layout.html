@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" th:href="@{assets/favicon.ico}">
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+</head>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand">Geeky</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/obras}">Obras</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/perfil}">Perfil</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/biblioteca}">Biblioteca</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/obras/new}">Publicar Obra</a></li>
+      </ul>
+      <form class="d-flex">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+          <li class="nav-item"><a class="nav-link" th:href="@{/registrar}">Registrarse</a></li>
+          <li class="nav-item"><a class="nav-link" th:href="@{/login}">Loging</a></li>
+          <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="text-center text-white">
+      <h1 class="display-4 fw-bolder">La mejor biblioteca Geek</h1>
+      <p class="lead fw-normal text-white-50 mb-0">accede a lo mejor en novelas gráficas</p>
+    </div>
+  </div>
+</header>
+<!-- Body -->
+<body layout:fragment="body"></body>
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Geeky 2024</p></div>
+</footer>
+<!-- Core theme JS-->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Este código se ejecutará una vez que el DOM esté completamente cargado
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      new bootstrap.Popover(tooltipTriggerEl);
+    });
+  });
+</script>
+</html>
