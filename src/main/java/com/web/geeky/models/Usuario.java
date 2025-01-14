@@ -1,5 +1,6 @@
 package com.web.geeky.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,9 +39,11 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "obra_id")
     )
+    @JsonIgnore
     private List<Obra> biblioteca = new ArrayList<>(); // Inicializa la lista
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Obra> publicaciones; // Obras publicadas por el usuario
 
 }

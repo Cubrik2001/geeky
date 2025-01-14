@@ -21,4 +21,6 @@ public interface UsuarioServices {
     void eliminarObraDeBiblioteca(Long id, Long obraId);
 
     void updateUsuario(@Valid UsuarioDto usuarioDto);
+
+    void  testFindByNombre(@NotEmpty String nombre);
 }

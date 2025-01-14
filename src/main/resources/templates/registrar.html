@@ -54,7 +54,9 @@
                                 placeholder="Nombre de Usuario"
                                 th:field="*{nombre}">
                     </div>
-                    <p th:if="${#fields.hasErrors('nombre')}" class="text-danger"></p>
+                    <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger">
+                        <p th:each="err : ${#fields.errors('nombre')}" th:text="${err}"></p>
+                    </div>
                     <div class="form-group">
                         <label>Fotor de Perfil</label>
                         <input

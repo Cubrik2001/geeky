@@ -1,5 +1,6 @@
 package com.web.geeky.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +40,7 @@ public class Obra {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private Usuario usuario; // Relación con el usuario que publicó la obra
 
     @ManyToMany
@@ -46,6 +48,6 @@ public class Obra {
             name = "usuario_biblioteca_obra",
             joinColumns = @JoinColumn(name = "obra_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
-    )
+    )@JsonIgnore
     private List<Usuario> usuariosBiblioteca; // Relación con los usuarios que tienen la obra en su biblioteca
 }

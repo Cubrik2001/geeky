@@ -48,6 +48,9 @@
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
           </div>
+          <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger">
+            <p th:each="err : ${#fields.errors('nombre')}" th:text="${err}"></p>
+          </div>
           <div class="mb-3">
             <label for="apellido" class="form-label">Apellido</label>
             <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
@@ -56,6 +59,9 @@
             <label for="correo" class="form-label">Correo</label>
             <input type="email" class="form-control" id="correo" th:field="*{correo}" required>
           </div>
+          <div th:if="${#fields.hasErrors('correo')}" class="alert alert-danger">
+            <p th:each="err : ${#fields.errors('correo')}" th:text="${err}"></p>
+          </div>
           <div class="mb-3">
             <label for="photoUrl" class="form-label">URL de Foto</label>
             <input type="text" class="form-control" id="photoUrl" th:field="*{photoUrl}">
@@ -63,6 +69,9 @@
           <div class="mb-3">
             <label for="contrasena" class="form-label">Nueva Contraseña</label>
             <input type="password" class="form-control" id="contrasena" th:field="*{contrasena}">
+          </div>
+          <div th:if="${#fields.hasErrors('contrasena')}" class="alert alert-danger">
+            <p th:each="err : ${#fields.errors('contrasena')}" th:text="${err}"></p>
           </div>
           <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
         </form>

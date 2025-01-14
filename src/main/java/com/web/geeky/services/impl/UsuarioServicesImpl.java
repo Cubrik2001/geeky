@@ -20,7 +20,7 @@ public class UsuarioServicesImpl implements UsuarioServices {
     private final UsuarioRepository usuarioRepository;
     private final ObraRepository obraRepository;
 
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     @Autowired
     public UsuarioServicesImpl(UsuarioRepository usuarioRepository,
                                PasswordEncoder passwordEncoder, ObraRepository obraRepository) {
@@ -76,6 +76,15 @@ public class UsuarioServicesImpl implements UsuarioServices {
         return usuarioRepository.findByNombre(nombre);
     }
 
+    public void testFindByNombre(String nombre) {
+        Usuario usuario = usuarioRepository.findByNombre(nombre);
+        if (usuario != null) {
+            System.out.println("Usuario encontrado: " + usuario.getNombre());
+        } else {
+            System.out.println("No se encontró ningún usuario con el nombre: " + nombre);
+        }
+    }
+
     @Override
     public void eliminarObraDeBiblioteca(Long usuarioId, Long obraId) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
@@ -124,6 +133,5 @@ public class UsuarioServicesImpl implements UsuarioServices {
                 .updatedON(usuario.getUpdatedON())
                 .build();
     }
-
 
 }
